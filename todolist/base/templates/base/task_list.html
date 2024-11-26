@@ -1,34 +1,52 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<header>
+    <h2>To-Do List</h2>
+</header>
 
 {% if request.user.is_authenticated %}
-<p>{{request.user}}</p>
-<a href="{% url 'logout' %}">Logout</a>
+<div class="user-info">
+    <p>Welcome, <strong>{{ request.user }}</strong>!</p>
+    <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+</div>
 {% else %}
-<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
 {% endif %}
 
 <hr>
-<h1> To do list </h1>
-<a href="{% url 'task-create' %}">Add Task</a>
+<div class="task-actions">
+    <a href="{% url 'task-create' %}" class="btn">Add New Task</a>
+</div>
 
-<form method="GET">
-    <input type="text"  value="Search-area">
-    <input type="submit" value="Search">
+<form method="GET" class="search-form">
+    <input type="text" name="Search-area" placeholder="Search tasks..." value="{{ search_input }}">
+    <input type="submit" value="Search" class="btn">
 </form>
 
+{% if tasks %}
 <table>
-    <tr>
-        <th>Items</th>
-        <th></th>
-        <th></th>
-    </tr>
-    {% for task in tasks %}
-    <tr>
-        <td>{{task.title}}</td>
-        <td><a href="{% url 'task' task.id %}">view</a></td>
-        <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
-        <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
-    </tr>
-    {% empty %}
-    <h3> no items in list</h3>
-    {% endfor %}
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>
+                <a href="{% url 'task-update' task.id %}" class="btn btn-secondary">Edit</a>
+                <a href="{% url 'task-delete' task.id %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
+{% else %}
+<p>No tasks available. Add a new task to get started!</p>
+{% endif %}
+
+{% endblock content %}
+
