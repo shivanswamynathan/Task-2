@@ -1,7 +1,9 @@
 
 
 # Todo_List
-![todolist](https://github.com/user-attachments/assets/025cde3d-57e1-476c-ac09-7f12a8ce040a)
+![view](https://github.com/user-attachments/assets/2cb2285a-0f35-4cf7-b160-8374aa704bbc)
+
+![view 1](https://github.com/user-attachments/assets/b7394f8a-695e-484e-ba2d-428249ded677)
 
 ![login](https://github.com/user-attachments/assets/1d3de3ac-0555-4561-bd96-957b17acce88)
 
