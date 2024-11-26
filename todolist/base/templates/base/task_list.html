@@ -37,6 +37,7 @@
         <tr>
             <td>{{ task.title }}</td>
             <td>
+                <a href="{% url 'task' task.id %}"class="btn btn-secondary">view</a>
                 <a href="{% url 'task-update' task.id %}" class="btn btn-secondary">Edit</a>
                 <a href="{% url 'task-delete' task.id %}" class="btn btn-danger">Delete</a>
             </td>
